@@ -8,7 +8,7 @@ import time
 import os
 import numpy as np
 
-# ard = serial.Serial("COM3", 115200) #look into whether different baud rates are better
+ard = serial.Serial("COM4", 115200) #look into whether different baud rates are better. orginally COM3 but hopefully COM4 will work, COM3 being used by platformio I think?
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml') #haar cascade file fixed according to https://stackoverflow.com/questions/30508922/error-215-empty-in-function-detectmultiscale
 
@@ -23,29 +23,29 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-        # x_pos = x + (w/2)
-        # y_pos = y + (h/2)
+        x_pos = x + (w/2)
+        y_pos = y + (h/2)
 
-        # if x_pos > 280:
-        #     ard.write('L'.encode())
-        #     time.sleep(0.01)
-        # elif x_pos < 360:
-        #     ard.write('R'.encode())
-        #     time.sleep(0.01)
-        # else:
-        #     ard.write('S'.encode())
-        #     time.sleep(0.01)
+        if x_pos > 280:
+            ard.write('L'.encode())
+            time.sleep(0.01)
+        elif x_pos < 360:
+            ard.write('R'.encode())
+            time.sleep(0.01)
+        else:
+            ard.write('S'.encode())
+            time.sleep(0.01)
 
-        # if y_pos > 280:
-        #     ard.write('D'.encode())
-        #     time.sleep(0.01)
-        # elif y_pos < 200:
-        #     ard.write('U'.encode())
-        #     time.sleep(0.01)
-        # else:
-        #     ard.write('S'.encode())
-        #     time.sleep(0.01)
-        # break
+        if y_pos > 280:
+            ard.write('D'.encode())
+            time.sleep(0.01)
+        elif y_pos < 200:
+            ard.write('U'.encode())
+            time.sleep(0.01)
+        else:
+            ard.write('S'.encode())
+            time.sleep(0.01)
+        break
 
     cv2.imshow('frame', frame)
     k = cv2.waitKey(1)&0xFF
@@ -53,6 +53,6 @@ while True:
         break
 
 cv2.destroyAllWindows()
-# ard.close()
+ard.close()
 vid.release()
 
