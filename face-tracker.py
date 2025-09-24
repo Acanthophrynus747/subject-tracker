@@ -8,11 +8,6 @@ import time
 import os
 import numpy as np
 
-cwd = os.getcwd()
-
-print("CWD: ")
-print(cwd)
-
 # ard = serial.Serial("COM3", 115200) #look into whether different baud rates are better
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml') #haar cascade file fixed according to https://stackoverflow.com/questions/30508922/error-215-empty-in-function-detectmultiscale
