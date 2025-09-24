@@ -31,27 +31,21 @@ void loop(){
 
         //this could probably be a switch
         if(input == 'U'){
-            servoY.write(y+1);    //adjusts the servo angle according to the input
             y += 1;               //updates the value of the angle
         }
         else if(input == 'D'){ 
-            servoY.write(y-1);
             y -= 1;
         }
-        else{
-            servoY.write(y);
-        } 
         if(input == 'L'){
-            servoX.write(x-1);
             x -= 1;
         } 
         else if(input == 'R'){
-            servoX.write(x+1);
             x += 1;
         }
-        else{
-            servoX.write(x);
-        }
+        
+        servoX.write(x);
+        servoY.write(y);
+
         input = 0x00;           //clears the variable
     }
 }
